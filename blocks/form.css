@@ -10,3 +10,9 @@
 .form__submit {
   width: 100%;
 }
+
+.form__submit-button_inactive {
+  background-color: lightgray;
+  color: #999;
+  cursor: not-allowed;
+}
