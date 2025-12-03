@@ -10,6 +10,11 @@ const addTodoForm = addTodoPopup.querySelector(".popup__form");
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
+let activeCounter = 0;
+let generalCounter = 0;
+const activeCounterEl = document.getElementById("active-counter");
+const generalCounterEl = document.getElementById("general-counter");
+
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
 };
@@ -18,9 +23,14 @@ const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
 };
 
+const onRemove = () => {
+  generalCounter--;
+  generalCounterEl.textContent = generalCounter;
+};
+
 // The logic in this function should all be handled in the Todo class.
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", onRemove);
   const todoElement = todo.getview();
   //   const todoElement = todoTemplate.content
   //     .querySelector(".todo")
@@ -54,6 +64,9 @@ const generateTodo = (data) => {
   //     todoElement.remove();
   //  });
 
+  generalCounter++;
+  generalCounterEl.textContent = generalCounter;
+
   return todoElement;
 };
 
@@ -80,7 +93,7 @@ addTodoForm.addEventListener("submit", (evt) => {
   const id = uuidv4();
 
   const renderTodo = (item) => {
-    const Todo = generateTodo(renderTodo);
+    const Todo = generateTodo(item);
     todosList.append(Todo);
   };
 

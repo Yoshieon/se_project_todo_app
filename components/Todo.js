@@ -1,7 +1,8 @@
 class Todo {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, onRemove) {
     this._data = data;
     this._templateElement = document.querySelector(templateSelector);
+    this._onRemove = onRemove;
   }
 
   setEventListeners() {
@@ -9,6 +10,7 @@ class Todo {
     const todoDeleteBtn = this.todoElement.querySelector(".todo__delete-btn");
     todoDeleteBtn.addEventListener("click", () => {
       this.todoElement.remove();
+      this._onRemove();
     });
 
     this._todoCheckboxEl.addEventListener("change", () => {
@@ -25,6 +27,7 @@ class Todo {
   }
 
   getview() {
+    // getView
     this.todoElement = this._templateElement.content
       .querySelector(".todo")
       .cloneNode(true);
