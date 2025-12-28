@@ -1,10 +1,10 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+A todo list that shows a list of tasks.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+Whenever a todo list is created it will update the counter of tasks.
 
 ## Technology
 
